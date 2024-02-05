@@ -38,6 +38,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void update(Product product) {
+        if (findById(product.getProductId()) != null) {
+            productRepository.update(product);
+        }
+    }
+
+    @Override
     public void delete(String id) {
         if (findById(id) != null) {
             productRepository.delete(id);
