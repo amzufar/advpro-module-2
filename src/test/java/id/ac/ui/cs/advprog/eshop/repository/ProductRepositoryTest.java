@@ -105,4 +105,21 @@ public class ProductRepositoryTest {
         assertEquals(updatedProduct.getProductName(), foundProduct.getProductName());
         assertEquals(updatedProduct.getProductQuantity(), foundProduct.getProductQuantity());
     }
+
+    @Test
+    void testDeleteProduct() {
+        Product productToDelete = new Product();
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        productToDelete.setProductId(productId);
+        productToDelete.setProductName("Sampo Cap Bambang");
+        productToDelete.setProductQuantity(100);
+
+        productRepository.create(productToDelete);
+
+        productRepository.delete(productId);
+
+        Product foundProduct = productRepository.findById(productId);
+
+        assertNull(foundProduct);
+    }
 }
