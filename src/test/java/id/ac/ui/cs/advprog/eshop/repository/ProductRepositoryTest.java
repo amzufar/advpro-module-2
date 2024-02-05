@@ -64,4 +64,20 @@ public class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testFindById() {
+        Product product = new Product();
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        product.setProductId(productId);
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product foundProduct = productRepository.findById(productId);
+        assertNotNull(foundProduct);
+        assertEquals(productId, foundProduct.getProductId());
+        assertEquals(product.getProductName(), foundProduct.getProductName());
+        assertEquals(product.getProductQuantity(), foundProduct.getProductQuantity());
+    }
 }
