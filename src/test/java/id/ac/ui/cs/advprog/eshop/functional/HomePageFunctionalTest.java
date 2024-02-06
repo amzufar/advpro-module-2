@@ -34,13 +34,13 @@ class HomePageFunctionalTest {
 
     @BeforeEach
     void setupTest() {
-        baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
+        baseUrl = String.format("%s:%d/product/list", testBaseUrl, serverPort);
     }
 
     @Test
     void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
-        driver.get(baseUrl + "/product/list");
+        driver.get(baseUrl);
         String pageTitle = driver.getTitle();
 
         // Verify
@@ -50,7 +50,7 @@ class HomePageFunctionalTest {
     @Test
     void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
-        driver.get(baseUrl + "/product/list");
+        driver.get(baseUrl);
         String welcomeMessage = driver.findElement(By.tagName("h3")).getText();
 
         // Verify
