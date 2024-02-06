@@ -25,7 +25,7 @@ class HomePageFunctionalTest {
     private int serverPort;
 
     /**
-     * The base URL for testing. Default to {@code httpt://localhost}.
+     * The base URL for testing. Default to {@code http://localhost}.
      */
     @Value("${app.baseUrl:http://localhost}")
     private String testBaseUrl;
