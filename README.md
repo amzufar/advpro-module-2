@@ -14,3 +14,9 @@ Setelah mengimplementasi dua _features_ tambahan (_edit_ dan _delete_), berikut 
    * Contoh: pada class ProductServiceImpl saya menambahkan comment untuk menjelaskan 1 line code.
 
 Namun, saya belum dapat melakukan _error handling_ dengan baik. Pada class ProductRepository, terdapat fungsi `findById` dan `update` yang masih me-_return_ nilai `null` pada salah satu case-nya.
+
+## Refleksi 2
+1. Jawaban untuk pertanyaan nomor 1:
+   * Setelah membuat/menulis unit test, saya merasa lebih yakin bahwa code yang sudah saya implementasikan berjalan dengan baik dan benar. 
+   * Menurut saya, salah satu cara untuk memastikan bahwa unit test sudah cukup untuk memverifikasi program adalah dengan melakukan unit testing untuk setiap method pada tiap class.
+   * Tentu saja code coverage 100% tidak menjamin implementasi code kita bebas dari bug atau error. Untuk menjamin implementasi code bebas dari bug atau error, kita perlu memperhatikan _quality of test_ yang kita buat.
