@@ -66,6 +66,32 @@ public class ProductServiceImplTest {
     }
 
     @Test
+    void testFindById_NotFound() {
+        String nonExistentId = "1";
+        when(productRepository.findById(nonExistentId)).thenReturn(null);
+        Product foundProduct = productService.findById(nonExistentId);
+        assertNull(foundProduct);
+    }
+
+    @Test
+    void testUpdate_ProductNotFound() {
+        String nonExistentId = "1";
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId(nonExistentId);
+        when(productRepository.findById(nonExistentId)).thenReturn(null);
+        productService.update(updatedProduct);
+        verify(productRepository, never()).update(any());
+    }
+
+    @Test
+    void testDelete_ProductNotFound() {
+        String nonExistentId = "1";
+        when(productRepository.findById(nonExistentId)).thenReturn(null);
+        productService.delete(nonExistentId);
+        verify(productRepository, never()).delete(any());
+    }
+
+    @Test
     public void testServiceUpdateProduct() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
