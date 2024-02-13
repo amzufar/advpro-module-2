@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductServiceImplTest {
+class ProductServiceImplTest {
 
     @Mock
     private ProductRepository productRepository;
@@ -32,7 +32,7 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    public void testServiceCreateProduct() {
+    void testServiceCreateProduct() {
         product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
@@ -92,7 +92,7 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    public void testServiceUpdateProduct() {
+    void testServiceUpdateProduct() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         when(productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6")).thenReturn(product);
@@ -103,7 +103,7 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    public void testServiceDeleteProduct() {
+    void testServiceDeleteProduct() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         when(productRepository.findById(product.getProductId())).thenReturn(product);
