@@ -34,7 +34,7 @@ class ProductControllerTest {
     @Test
     void testCreateProductPage() {
         String output = productController.createProductPage(model);
-        assertEquals("createProduct", output);
+        assertEquals("createproduct", output);
     }
 
     @Test
@@ -49,7 +49,7 @@ class ProductControllerTest {
         List<Product> productList = new ArrayList<>();
         when(productService.findAll()).thenReturn(productList);
         String output = productController.productListPage(model);
-        assertEquals("productList", output);
+        assertEquals("productlist", output);
         verify(model, times(1)).addAttribute("products", productList);
     }
 
@@ -59,7 +59,7 @@ class ProductControllerTest {
         Product product = new Product();
         when(productService.findById(productId)).thenReturn(product);
         String output = productController.editProductPage(productId, model);
-        assertEquals("editProduct", output);
+        assertEquals("editproduct", output);
         verify(model, times(1)).addAttribute("product", product);
     }
 
@@ -77,7 +77,7 @@ class ProductControllerTest {
         Product product = new Product();
         when(productService.findById(productId)).thenReturn(product);
         String output = productController.deleteProductPage(productId, model);
-        assertEquals("deleteProduct", output);
+        assertEquals("deleteproduct", output);
     }
 
     @Test
