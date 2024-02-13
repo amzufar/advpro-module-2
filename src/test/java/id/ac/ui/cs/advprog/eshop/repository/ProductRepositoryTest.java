@@ -82,6 +82,26 @@ public class ProductRepositoryTest {
     }
 
     @Test
+    void testFindById_NotFound() {
+        Product product = new Product();
+        product.setProductId("1");
+        productRepository.create(product);
+        Product foundProduct = productRepository.findById("2");
+        assertNull(foundProduct);
+    }
+
+    @Test
+    void testUpdate_ProductNotFound() {
+        Product product = new Product();
+        product.setProductId("1");
+        productRepository.create(product);
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId("2");
+        Product returnedProduct = productRepository.update(updatedProduct);
+        assertNull(returnedProduct);
+    }
+
+    @Test
     void testUpdateProduct() {
         Product initialProduct = new Product();
         String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";

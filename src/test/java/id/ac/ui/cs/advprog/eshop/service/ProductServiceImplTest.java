@@ -10,6 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -43,6 +46,49 @@ public class ProductServiceImplTest {
         assertEquals(createdProduct.getProductId(), product.getProductId());
         assertEquals(createdProduct.getProductName(), product.getProductName());
         assertEquals(createdProduct.getProductQuantity(), product.getProductQuantity());
+    }
+
+    @Test
+    void testFindAll() {
+        List<Product> productList = new ArrayList<>();
+        when(productRepository.findAll()).thenReturn(productList.iterator());
+        List<Product> output = productService.findAll();
+        assertEquals(productList, output);
+    }
+
+    @Test
+    void testFindById() {
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        Product product = new Product();
+        when(productRepository.findById(productId)).thenReturn(product);
+        Product output = productService.findById(productId);
+        assertEquals(product, output);
+    }
+
+    @Test
+    void testFindById_NotFound() {
+        String nonExistentId = "1";
+        when(productRepository.findById(nonExistentId)).thenReturn(null);
+        Product foundProduct = productService.findById(nonExistentId);
+        assertNull(foundProduct);
+    }
+
+    @Test
+    void testUpdate_ProductNotFound() {
+        String nonExistentId = "1";
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId(nonExistentId);
+        when(productRepository.findById(nonExistentId)).thenReturn(null);
+        productService.update(updatedProduct);
+        verify(productRepository, never()).update(any());
+    }
+
+    @Test
+    void testDelete_ProductNotFound() {
+        String nonExistentId = "1";
+        when(productRepository.findById(nonExistentId)).thenReturn(null);
+        productService.delete(nonExistentId);
+        verify(productRepository, never()).delete(any());
     }
 
     @Test
