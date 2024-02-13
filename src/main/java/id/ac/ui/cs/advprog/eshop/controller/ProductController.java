@@ -13,13 +13,18 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    @Autowired
-    private ProductService service;
+    private final ProductService service;
+
+    private static final String productString = "product";
+
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
 
     @GetMapping("/create")
     public String createProductPage(Model model) {
         Product product = new Product();
-        model.addAttribute("product", product);
+        model.addAttribute(productString, product);
         return "createProduct";
     }
 
@@ -39,7 +44,7 @@ public class ProductController {
     @GetMapping("/edit/{productId}")
     public String editProductPage(@PathVariable String productId, Model model) {
         Product product = service.findById(productId);
-        model.addAttribute("product", product);
+        model.addAttribute(productString, product);
         return "editProduct";
     }
 
@@ -53,7 +58,7 @@ public class ProductController {
     @GetMapping("/delete/{productId}")
     public String deleteProductPage(@PathVariable String productId, Model model) {
         Product product = service.findById(productId);
-        model.addAttribute("product", product);
+        model.addAttribute(productString, product);
         return "deleteProduct";
     }
 
