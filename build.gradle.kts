@@ -1,8 +1,17 @@
 plugins {
 	java
 	jacoco
+	id("org.sonarqube") version "4.4.1.3373"
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "amzufar_advpro-module-2")
+		property("sonar.organization", "amzufar")
+		property("sonar.host.url", "https://sonarcloud.io")
+	}
 }
 
 group = "id.ac.ui.cs.advprog"
