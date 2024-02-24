@@ -1,7 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
-import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
+import id.ac.ui.cs.advprog.eshop.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,17 @@ import java.util.List;
 @RequestMapping("/car")
 public class CarController {
 
-    private final CarServiceImpl carService;
+    @Autowired
+    CarCreationService carCreationService;
 
-    public CarController(CarServiceImpl carService) {
-        this.carService = carService;
-    }
+    @Autowired
+    CarDeleteService carDeleteService;
+
+    @Autowired
+    CarRetrievalService carRetrievalService;
+
+    @Autowired
+    CarUpdateService carUpdateService;
 
     @GetMapping("/create")
     public String createCarPage(Model model) {
@@ -27,20 +34,20 @@ public class CarController {
 
     @PostMapping("/create")
     public String createCarPost(@ModelAttribute Car car, Model model) {
-        carService.create(car);
+        carCreationService.create(car);
         return "redirect:list";
     }
 
     @GetMapping("/list")
     public String carListPage(Model model) {
-        List<Car> allCars = carService.findAll();
+        List<Car> allCars = carRetrievalService.findAll();
         model.addAttribute("cars", allCars);
         return "carlist";
     }
 
     @GetMapping("/edit/{carId}")
     public String editCarPage(@PathVariable String carId, Model model) {
-        Car car = carService.findById(carId);
+        Car car = carRetrievalService.findById(carId);
         model.addAttribute("car", car);
         return "editcar";
     }
@@ -48,13 +55,13 @@ public class CarController {
     @PostMapping("/edit")
     public String editCarPost(@ModelAttribute Car updatedCar, Model model) {
         System.out.println(updatedCar.getCarId());
-        carService.update(updatedCar.getCarId(),  updatedCar);
+        carUpdateService.update(updatedCar.getCarId(),  updatedCar);
         return "redirect:/car/list";
     }
 
     @PostMapping("/delete")
     public String deleteCar(@RequestParam("carId") String carId) {
-        carService.deleteCarById(carId);
+        carDeleteService.deleteCarById(carId);
         return "redirect:/car/list";
     }
 }
