@@ -1,6 +1,22 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=amzufar_advpro-module-2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=amzufar_advpro-module-2)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=amzufar_advpro-module-2&metric=coverage)](https://sonarcloud.io/summary/new_code?id=amzufar_advpro-module-2)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=amzufar_advpro-module-2&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=amzufar_advpro-module-2)
+# Tutorial 3
+Pada tutorial ini, saya belajar mengenai penggunaan SOLID principles.
+
+## Refleksi
+1. Saya menerapkan semua SOLID principle secara menyeluruh:
+   * Single Responsibility Principle (SRP): Each class should have a singular responsibility. Contohnya, pada class `CarController` mempunyai tugas sebagai controller object Car dan pada class `ProductController` mempunyai tugas sebagai controller untuk object Product.
+   * Open-Closed Principle (OCP): A software artifact should be open for extension but closed for modification. Contohnya, saya membuat interface `ICarRepository` yang diimplementasikan pada class `CarRepository`. Apabila ada penambahan fitur yang diinginkan pada class `CarRepository` kita dapat dengan mudah membuat interface baru yang nantinya diimplementasikan juga pada kelas tersebut.
+   * Liskov Substitution Principle (LSP): Derived or child classes must be substitutable for their base or parent classes. Contohnya, saya memisahkan `CarController` dari yang awalnya berada pada `ProductController`
+   * Interface Segregation Principle (ISP): Interface segregation, emphasizing the subdivision of larger interfaces into smaller, more focused ones. Contohnya, saya memecah tiap function pada `CarService` menjadi beberapa interface yaitu `CarCreationService`, `CarRetrievalService`, `CarUpdateService`, dan `CarDeleteService`. Tujuannya adalah untuk menghindari interface yang terlalu rumit, mendorong pembentukan interface yang lebih kecil yang dapat disesuaikan dengan kebutuhan tugasnya.
+   * Dependency Inversion Principle (DIP) : Emphasizes the use of abstraction, such as abstract classes and interfaces, over concrete implementations. Contohnya pada class `CarController` tidak boleh dependant pada class CarServices secara langsung, melainkan pada interfacenya.
+
+2. Sudah saya jelaskan pada poin nomor 1.
+3. Kerugian jika tidak menggunakan SOLID principle:
+   * Software menjadi lebih kaku. Banyak class yang masih tightly coupled, sehingga software menjadi kurang fleksibel dan sulit di-maintain. Contohnya, pada `CarRepository` yang mengimplementasikan interface `ICarRepository`. Penambahan fitur pada class tersebut dapat dilakukan dengan mengimplementasikan interface baru sesuai dengan fitur tersebut.
+   * Code sulit dimengerti/dipahami. Dengan menggunakan SOLID principle, otomatis kita akan menerapkan SRP yang menyatakan setiap class hanya diperbolehkan melakukan satu tugas saja. Jika kita tidak melakukan hal tersebut, class yang kita pakai akan berukuran besar dan cenderung lebih kompleks sehingga sulit untuk dipahami.
+
 # Tutorial 2
 Pada tutorial ini, saya belajar membuat workflow pada Github, yaitu meliputi CI, Scorecard, dan SonarCloud. Saya juga melakukan auto-deployment menggunakan koyeb.
 ## Refleksi
