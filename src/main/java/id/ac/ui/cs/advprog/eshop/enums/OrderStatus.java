@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum OrderStatus {
     WAITING_PAYMENT("WAITING_PAYMENT"),
     FAILED("FAILED"),
-    SUCCES("SUCCESS"),
+    SUCCESS("SUCCESS"),
     CANCELLED("CANCELLED");
 
     private final String value;
@@ -14,7 +14,7 @@ public enum OrderStatus {
     private OrderStatus(String value) {
         this.value = value;
     }
-    
+
     public static boolean contains(String param) {
         for (OrderStatus orderStatus : OrderStatus.values()) {
             if (orderStatus.name().equals(param)) {
