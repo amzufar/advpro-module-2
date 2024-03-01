@@ -30,8 +30,8 @@ class PaymentTest {
     @Test
     void testSetStatusToRejected() {
         Payment payment = new Payment("123", "voucherCode", "SUCCESS", paymentData);
-        payment.setStatus("CANCELLED");
-        assertEquals("CANCELLED", payment.getStatus());
+        payment.setStatus("REJECTED");
+        assertEquals("REJECTED", payment.getStatus());
     }
 
     @Test
