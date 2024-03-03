@@ -3,7 +3,6 @@ package id.ac.ui.cs.advprog.eshop.model;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.Map;
 
 @Getter
@@ -12,24 +11,31 @@ public class Payment {
     private String method;
     private String status;
     private Map<String, String> paymentData;
+    private PaymentMethod paymentMethod;
 
-    public Payment(String id, String method, String status, Map<String, String> paymentData) {
+    public Payment(String id, String method, Map<String, String> paymentData) {
+        this.paymentMethod = checkPaymentMethod(method, paymentData);
         this.id = id;
-        String[] methodList = {"voucherCode", "cashOnDelivery"};
-        if (Arrays.stream(methodList).noneMatch(item -> (item.equals(method)))) {
-            throw new IllegalArgumentException();
-        } else {
-            this.method = method;
-        }
-        setStatus(status);
+        this.status = checkStatus(this.paymentMethod);
         this.paymentData = paymentData;
+        this.method = method;
     }
 
-    void setStatus(String status) {
-        if (PaymentStatus.contains(status)) {
-            this.status = status;
+    private PaymentMethod checkPaymentMethod(String method, Map<String, String> paymentData) {
+        if (method.equals("cashOnDelivery")) {
+            return new CashOnDelivery(paymentData);
+        } else if (method.equals("voucherCode")) {
+            return new VoucherCode(paymentData);
         } else {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private String checkStatus(PaymentMethod paymentMethod) {
+        if (paymentMethod.isValid()) {
+            return "SUCCESS";
+        } else {
+            return "REJECTED";
         }
     }
 }

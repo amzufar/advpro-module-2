@@ -22,11 +22,11 @@ class PaymentRepositoryTest {
     void setUp() {
         paymentRepository = new PaymentRepository();
         payments = new ArrayList<>();
-        Payment payment1 = new Payment("123", "voucherCode", "SUCCESS", paymentData);
+        Payment payment1 = new Payment("123", "voucherCode", paymentData);
         payments.add(payment1);
-        Payment payment2 = new Payment("124", "cashOnDelivery", "REJECTED", paymentData);
+        Payment payment2 = new Payment("124", "cashOnDelivery", paymentData);
         payments.add(payment2);
-        Payment payment3 = new Payment("125", "voucherCode", "SUCCESS", paymentData);
+        Payment payment3 = new Payment("125", "voucherCode", paymentData);
         payments.add(payment3);
     }
 
