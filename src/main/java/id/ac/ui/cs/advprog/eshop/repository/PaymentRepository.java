@@ -11,14 +11,23 @@ public class PaymentRepository {
     private Map<Payment, Order> payments = new HashMap<>();
 
     public Payment addPayment(Order order, String method, Map<String, String> paymentData) {
-        return null;
+        String generatedId = UUID.randomUUID().toString();
+        Payment payment = new Payment(generatedId, method, paymentData);
+        this.payments.put(payment, order);
+        return payment;
     }
 
     public Payment getPayment(String paymentId) {
+        for (Payment payment : this.payments.keySet()) {
+            if (payment.getId().equals(paymentId)) {
+                return payment;
+            }
+        }
         return null;
     }
 
     public List<Payment> getAllPayments() {
-        return null;
+        List<Payment> paymentList = new ArrayList<>(this.payments.keySet());
+        return paymentList;
     }
 }
