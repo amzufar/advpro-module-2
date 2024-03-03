@@ -11,8 +11,7 @@ public class PaymentRepository {
     private Map<Payment, Order> payments = new HashMap<>();
 
     public Payment addPayment(Order order, String method, Map<String, String> paymentData) {
-        String generatedId = UUID.randomUUID().toString();
-        Payment payment = new Payment(generatedId, method, paymentData);
+        Payment payment = new Payment(generateId(), method, paymentData);
         this.payments.put(payment, order);
         return payment;
     }
@@ -29,5 +28,9 @@ public class PaymentRepository {
     public List<Payment> getAllPayments() {
         List<Payment> paymentList = new ArrayList<>(this.payments.keySet());
         return paymentList;
+    }
+
+    private String generateId() {
+        return UUID.randomUUID().toString();
     }
 }
