@@ -14,6 +14,8 @@ public abstract class PaymentMethod {
     }
 
     abstract boolean isPaymentDataSizeValid(Map<String, String> paymentData);
+
     abstract boolean isPaymentDataKeyValid(Map<String, String> paymentData);
+
     public abstract boolean isValid();
 }
