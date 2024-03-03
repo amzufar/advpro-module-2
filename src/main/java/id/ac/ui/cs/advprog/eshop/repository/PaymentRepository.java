@@ -1,41 +1,33 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class PaymentRepository {
+    private Map<Payment, Order> payments = new HashMap<>();
 
-    private List<Payment> paymentList = new ArrayList<>();
-
-    public Payment save(Payment payment) {
-        int i = 0;
-        for (Payment savedPayment : paymentList) {
-            if (savedPayment.getId().equals(payment.getId())) {
-                paymentList.remove(i);
-                paymentList.add(i, payment);
-                return payment;
-            }
-            i += 1;
-        }
-
-        paymentList.add(payment);
+    public Payment addPayment(Order order, String method, Map<String, String> paymentData) {
+        String generatedId = UUID.randomUUID().toString();
+        Payment payment = new Payment(generatedId, method, paymentData);
+        this.payments.put(payment, order);
         return payment;
     }
 
     public Payment getPayment(String paymentId) {
-        for (Payment savedPayment: paymentList) {
-            if (savedPayment.getId().equals(paymentId)) {
-                return savedPayment;
+        for (Payment payment : this.payments.keySet()) {
+            if (payment.getId().equals(paymentId)) {
+                return payment;
             }
         }
         return null;
     }
 
     public List<Payment> getAllPayments() {
+        List<Payment> paymentList = new ArrayList<>(this.payments.keySet());
         return paymentList;
     }
 }
