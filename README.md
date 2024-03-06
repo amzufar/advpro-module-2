@@ -1,6 +1,17 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=amzufar_advpro-module-2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=amzufar_advpro-module-2)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=amzufar_advpro-module-2&metric=coverage)](https://sonarcloud.io/summary/new_code?id=amzufar_advpro-module-2)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=amzufar_advpro-module-2&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=amzufar_advpro-module-2)
+# Tutorial 4
+Pada tutorial ini, saya belajar TDD (Test Driven Development).
+## Refleksi
+1. Menurut saya, flow TDD ini sangat bermanfaat. Kita sebagai developer diminta untuk membuat test terlebih dahulu, sebelum melakukan implementasi feature. Hal tersebut dapat mengurangi jumlah bugs/error pada hasil kerja/code kita.
+2. FIRST Principle:
+   * Fast: Test yang saya buat pada Tutorial ini berjalan dengan cepat dan tidak mengganggu workflow lainnya.
+   * Isolated/Independent: Sebelum menjalankan test, saya sudah membuat function `setUp()` yang nantinya akan berjalan untuk setiap kali melakukan test dengan bantuan `@BeforeEach`. 
+   * Repeatable: Test yang saya buat menghasilkan output yang konsisten.
+   * Self-Validating: Menurut saya, test yang saya buat dapat dikatakan self-validating. Test tersebut sudah saya desain sedemikian rupa agar mudah dibaca dan dimengerti. 
+   * Thorough/Timely: Pada tutorial ini, saya belum berhasil mencapai 100% Coverage pada unit test. Improvement untuk kedepannya yaitu menambah test di missed branch berdasarkan hasil report jacoco. 
+
 # Tutorial 3
 Pada tutorial ini, saya belajar mengenai penggunaan SOLID principles.
 
