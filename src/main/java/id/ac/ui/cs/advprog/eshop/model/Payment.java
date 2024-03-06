@@ -10,12 +10,11 @@ public class Payment {
     private String method;
     private String status;
     private Map<String, String> paymentData;
-    private PaymentMethod paymentMethod;
 
     public Payment(String id, String method, Map<String, String> paymentData) {
-        this.paymentMethod = checkPaymentMethod(method, paymentData);
+        PaymentMethod paymentMethod = checkPaymentMethod(method, paymentData);
         this.id = id;
-        this.status = checkStatus(this.paymentMethod);
+        this.status = checkStatus(paymentMethod);
         this.paymentData = paymentData;
         this.method = method;
     }
