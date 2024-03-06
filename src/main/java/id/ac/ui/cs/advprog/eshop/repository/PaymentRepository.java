@@ -16,6 +16,13 @@ public class PaymentRepository {
         return payment;
     }
 
+    public String setStatus(Payment payment, String status) {
+        Order order = this.payments.get(payment);
+        order.setStatus(status);
+        payment.setStatus(status);
+        return status;
+    }
+
     public Payment getPayment(String paymentId) {
         for (Payment payment : this.payments.keySet()) {
             if (payment.getId().equals(paymentId)) {

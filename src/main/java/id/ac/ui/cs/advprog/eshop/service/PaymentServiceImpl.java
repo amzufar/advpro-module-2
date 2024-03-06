@@ -23,6 +23,11 @@ public class PaymentServiceImpl implements PaymentService{
         return payment;
     }
 
+    @Override
+    public String setStatus(Payment payment, String status) {
+        return paymentRepository.setStatus(payment, status);
+    }
+
     private String generateId() {
         return UUID.randomUUID().toString();
     }

@@ -37,4 +37,12 @@ public class Payment {
             return "REJECTED";
         }
     }
+
+    public void setStatus(String status) {
+        if (status.equals("SUCCESS") || status.equals("REJECTED")) {
+            this.status = status;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
 }
