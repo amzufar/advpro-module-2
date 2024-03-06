@@ -130,6 +130,24 @@ public class PaymentServiceImplTest {
     }
 
     @Test
+    void testSetStatusToSuccess() {
+        Payment payment = payments.getFirst();
+        doReturn("SUCCESS").when(paymentRepository).setStatus(payment, "SUCCESS");
+
+        String result = paymentService.setStatus(payment, "SUCCESS");
+        assertEquals(payment.getStatus(), result);
+    }
+
+    @Test
+    void testSetStatusToInvalidStatus() {
+        Payment payment = payments.getFirst();
+        doReturn(null).when(paymentRepository).setStatus(payment, "meow");
+
+        String result = paymentService.setStatus(payment, "meow");
+        assertNull(result);
+    }
+
+    @Test
     void testGetPayment() {
         Payment payment = payments.getFirst();
         doReturn(payment).when(paymentRepository).getPayment(payment.getId());
